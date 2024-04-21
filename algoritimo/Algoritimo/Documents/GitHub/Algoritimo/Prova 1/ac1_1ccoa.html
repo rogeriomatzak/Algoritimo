@@ -1,0 +1,86 @@
+<!-- 
+Quantidade de energia consumida em kWh (apenas números). 
+Bandeira tarifária da energia (será informado "vermelha", "amarela" ou "verde"). 
+Volume de água consumido em litros (apenas números). 
+Quantidade de vazamentos de água na casa (apenas números). 
+Volume de gás consumido em litros (apenas números). 
+Quantidade de MB (megabyte) do plano de internet (apenas números). 
+Indicação se possui uma linha telefônica vinculada ao plano de internet (será informado "sim" ou "não"). 
+ -->
+
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ </head>
+ <body>
+    Qtd Energia: <input type="number" id="input_kwh"> <br>
+    Bandeira: <input type="text" id="input_bandeira"> <br>
+    Litros de Água: <input type="number" id="input_agua"> <br>
+    Vazamentos: <input type="number" id="input_vazamentos"> <br>
+    Gás: <input type="number" id="input_gas"> <br>
+    MB internet: <input type="number" id="input_mb"> <br>
+    Telefone: <input type="text" id="input_telefone"> <br>
+
+    <button onclick="calcular()">Calcular Despesas Fixas</button>
+
+    <div id="div_mensagem"></div>
+</body>
+ </html>
+ <script>
+
+    function calcular() {
+        var kwh = Number(input_kwh.value);
+        var agua = Number(input_agua.value);
+        var vazamentos = Number(input_vazamentos.value);
+        var gas = Number(input_gas.value);
+        var mb = Number(input_mb.value);
+
+        var bandeira = input_bandeira.value;
+        var telefone = input_telefone.value;
+
+        var conta_energia = 0;
+
+        if (bandeira == `verde`) {
+            conta_energia = 0.75 * kwh;
+        }
+
+        if (bandeira == 'amarela') {
+            conta_energia = 0.90 * kwh;
+        }
+
+        if (bandeira == "vermelha") {
+            conta_energia = kwh;
+        }
+
+        if (kwh <= 50) {
+            conta_energia = conta_energia * 0.9;
+        }        
+        
+        var conta_agua = (agua * 3.5) + (vazamentos * 10);
+
+        var conta_gas = gas * 2.5;
+
+        var conta_internet = mb * 0.80;
+
+        if (telefone == "sim") {
+            conta_internet = conta_internet * 1.25;
+        } else {
+            conta_internet = conta_internet - conta_internet * 0.075;
+        }
+        
+        var total_despesas = conta_energia + conta_agua + conta_gas + conta_internet;
+
+        div_mensagem.innerHTML = `
+Com o consumo de ${kwh} kWh na bandeira ${bandeira}, a conta de energia totaliza R$ ${conta_energia}. <br>
+Com o consumo de ${agua} litros de água contendo ${vazamentos} vazamentos, a conta de água totaliza R$ ${conta_agua}. <br> 
+Com o consumo de ${gas} litros de gás, a conta de gás totaliza R$${conta_gas}.  <br>
+Com o consumo de ${mb} MB de internet, o valor do plano de internet/telefone totaliza R$ ${conta_internet}.  <br>
+Gasto total de despesas mensal: R$ ${total_despesas}.  <br>
+        `;
+    }
+
+ </script>

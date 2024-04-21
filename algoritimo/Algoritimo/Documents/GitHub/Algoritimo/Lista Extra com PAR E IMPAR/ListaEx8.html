@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" id="input_n">
+    <button onclick="viva()">Viva o 7</button>
+    <div id="div_m"></div>
+</body>
+</html>
+<script>
+function viva(){
+var numero=Number(input_n.value)
+for(var cont = 0;cont <=numero;cont++){
+if(cont %7 ==0)
+div_m.innerHTML+=`${cont}<br>`
+}
+}
+</script>

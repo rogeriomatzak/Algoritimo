@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Número: 
+    <select onchange="selecionar()" id="select_numero">
+        <option disabled selected value="#">Selecione uma opção</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+    </select>
+    <br>
+    Tabuada até... <input disabled type="text" id="input_tabuada">
+    <br>
+    <button disabled id="btn_ver" onclick="ver()">Ver tabuada</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+
+    function selecionar() {
+        btn_ver.disabled = false;
+        input_tabuada.disabled = false;
+    }
+
+    function ver() {
+        var numero = select_numero.value;
+        var tabuada = input_tabuada.value;
+
+        div_mensagem.innerHTML = "";
+
+        for (var cont = 1; cont <= tabuada; cont++) {
+            var resultado = numero * cont;
+
+            var cor = 'blue';
+
+            // valida se o multiplicador é ímpar para deixar a variável auxiliar como 'vermelho'
+            if (cont % 2 != 0) {
+                cor = 'red';
+            }
+
+            div_mensagem.innerHTML += `<span style="color: ${cor}">${numero} x ${cont} = ${resultado} </span> <br>`;
+        }
+    }
+</script>

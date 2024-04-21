@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Qunatidade De Números sorteados: <input type="text" id="input_qtd">
+    <button onclick="gerar()">Gerar Número Aleatório</button>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+    function gerar() {
+        var aleatorio = 0;
+        var qtd = Number(input_qtd.value);
+        for (var cont = 1; cont <= qtd; cont++) {
+            var aleatorio = Math.random();
+            if (aleatorio < 0.5) {
+                div_msg.innerHTML += ` ${aleatorio} está na metade inferior dos números. <br>`;
+            } else {
+                div_msg.innerHTML += `${aleatorio}  está na metade superior dos números <br>`;
+            }
+        }
+    }
+</script>

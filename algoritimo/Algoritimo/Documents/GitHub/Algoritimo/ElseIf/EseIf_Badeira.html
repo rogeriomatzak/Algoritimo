@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Verificar Sua Bandeira</h1><br>
+    Bandeira Tarifária(amarela,verde,vermelha): <input type="text" id="input_bandeira">
+    <button onclick="Analisar()">Analisar</button>
+    <div id="div_msg"></div>
+
+</body>
+
+</html>
+<script>
+    function Analisar() {
+        var bandeira = (input_bandeira.value)
+
+        if (bandeira == "amarela") {
+            div_msg.innerHTML = ` <span style="background-color: yellow; color: black;">  Sua Bandeira é ${bandeira}</span>`;
+        } else if (bandeira == "verde") {
+            div_msg.innerHTML = `<i style="color: green;">Sua Bandeira é ${bandeira}</i>`;
+        } else if (bandeira == "vermelha") {
+            div_msg.innerHTML = `<b style="color: red;"> Sua Bandeira é ${bandeira}</b>`;
+        } else
+            div_msg.innerHTML = "Bandeira Inválida !"
+    }
+
+
+
+
+</script>

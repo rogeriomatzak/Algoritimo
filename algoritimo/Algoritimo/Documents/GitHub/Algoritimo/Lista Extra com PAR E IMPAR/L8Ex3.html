@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Bilhete Unico</h1><br>
+    <select name="" id="select_pessoas"><br>
+        <option value="1">Comum</option>
+        <option value="2">Estudante</option>
+        <option value="3">Idoso/PNE</option>
+    </select>
+        <select name="" id="select_passagem"><br>
+            <option value="1"> Passagem única </option>
+            <option value="2"> Passagem integração </option>
+    </select>
+<button onclick="simular()">Simular Preço</button>
+<div id="div_msg"></div>
+
+</body>
+
+</html>
+<script>
+function simular(){
+var  unica=4.4
+var  integracao=5.90
+var tipo =select_pessoas.value
+var unicadesc= unica * 0.5
+var integracaodesc= integracao*0.5
+if(tipo==1 ){
+    div_msg.innerHTML=`Valor da passagem escolhida: R$${unica}`
+}else if(tipo ==2 && tipo ==3 ){
+    div_msg.innerHTML=`Valor da passagem escolhida: R$${unicadesc}`
+}else if (tipo ==1){
+     div_msg.innerHTML=`Valor da passagem escolhida: R$${integracao}`
+}else if(tipo ==2 && tipo==3){ 
+    div_msg.innerHTML=`Valor da passagem escolhida: R$${integracaodesc}`
+}
+}
+
+
+</script>

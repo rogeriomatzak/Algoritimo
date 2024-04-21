@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Quantas voltas? <input type="text" id="input_voltas"> 
+    <button onclick="iniciar()">Iniciar Corrida</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function iniciar() {
+        var voltas = Number(input_voltas.value);
+
+        div_mensagem.innerHTML = `Iniciando corrida de ${voltas} voltas!`;
+
+        for (var cont = 1; cont <= voltas; cont++) {
+            div_mensagem.innerHTML += `<br>O carro está dando a ${cont}ª volta`;
+        }
+
+        div_mensagem.innerHTML += "<br>Corrida Finalizada!";
+    }
+</script>

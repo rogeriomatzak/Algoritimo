@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="exibir()">S2 pares</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function exibir() {
+        var texto = ""; // variável para acumular o texto final a ser exibido
+
+        // percorre TODOS os números de 0 a 100, incrementendo o contador de 1 em 1 
+        for (var cont = 0; cont <= 100; cont ++) {
+            var resto = cont % 2; // obtém o resto da divisão do contador por 2 (diferente do /, que obtém o quociente)
+
+            if (resto == 0) { // se o resto da divisão for 0, significa que o contador é divisível por 2 
+                texto += `${cont} <br>`; // se for divisível por 2, é par, portanto, exibe
+            }
+        }
+
+        div_mensagem.innerHTML = texto; // ao final, exibe o texto final na div 
+        // desse modo, otimizamos a performance do código, pois acessa o HTML apenas uma vez, ao invés de acessá-lo a cada repetição
+    }
+</script>

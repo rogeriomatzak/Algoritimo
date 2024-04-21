@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  Selecionar Tabuada de ...
+  <select  id="select_numero">
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+<option>6</option>
+<option>7</option>
+<option>8</option>
+<option>9</option>
+</select><br>
+Tabuada Até ...
+<input type="text" id="input_tabuada">
+<br>
+<button onclick=" ver()">Ver Tabuada</button>
+<div id="div_msg"></div>
+<p style="color: blue;"></p>
+</body>
+</html>
+<script>
+
+
+function ver(){
+var numero=select_numero.value;
+var tabuada =input_tabuada.value;
+div_msg.innerHTML=""
+if(numero =='#'){
+  alert("Selecione uma opção válida!")
+}else{
+
+  for( var cont =1;cont <= tabuada;cont ++ ){
+    var resultado = numero * cont
+var cor ='blue'
+    if (cont %2 != 0){
+      cor='red'
+    
+    }
+    div_msg.innerHTML +=`<br> <span style ="color ${cor}"> ${numero} X ${tabuada}= ${resultado} <span>`
+  }
+}
+
+
+
+}
+
+
+
+
+
+</script>

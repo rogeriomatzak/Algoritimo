@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  Informar a Quantidade  de Elefantes : <input type="text" id="input_elefante">
+  <button onclick="atazanar()"> Atazanar a médium</button>
+  <div id="div_msg"></div>
+</body>
+</html>
+<script>
+function atazanar(){
+var elefante = Number(input_elefante.value);
+var mensagem=''
+var frase ="incomoda,"
+var rep =frase  * elefante
+
+for(var cont=1;cont  <= elefante;cont++){
+  div_msg.innerHTML +=`1 elefante incomoda muita gente! <br>  
+${cont} elefantes, ${rep} muito mais!<br>    `
+
+}
+
+
+
+
+}
+
+
+
+
+
+
+</script>

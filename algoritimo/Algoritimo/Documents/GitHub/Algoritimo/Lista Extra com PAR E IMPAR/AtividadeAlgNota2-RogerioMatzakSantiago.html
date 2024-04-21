@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Salário <input type="text" id="input_salario"><br>
+    Adicional <input type="text" id="input_adicional"><br>
+    Bûnus<input type="text" id="input_bonus"><br>
+    <button onclick="Calcular()">Analisar Minha Renda</button>
+    <div id="div_msg"></div>
+</body>
+
+</html>
+<script>
+
+    function Calcular() {
+        var salario = Number(input_salario.value);
+        var adicional = Number(input_adicional.value);
+        var bonus = Number(input_bonus.value);
+        var bruto = salario + adicional + bonus
+        var IR = 0
+        var INSS = 0
+        var FGTS = 0
+        var salarioliq = bruto - (IR - INSS - FGTS)
+        var poupar = salarioliq * 0.15
+        var porano = poupar * 12;
+
+        if (bruto >= 10000) {
+            IR = bruto * 0.125;
+            INSS = (bruto * 0.875) * 0.1;
+            FGTS = (bruto * 0.875) * 0.08;
+            salarioliq = bruto - (IR + INSS + FGTS);
+            poupar = salarioliq * 0.15;
+            porano = poupar * 12
+        }
+        else {
+            IR
+            INSS = bruto * 0.1;
+            FGTS = bruto * 0.08;
+            salarioliq = bruto - (IR + INSS + FGTS);
+            poupar = salarioliq * 0.15;
+            porano = poupar * 12
+        }
+        if (salarioliq> 2500) {
+            div_msg.innerHTML = `<b >Análise da sua  Renda</b> <br><br> Com o salário de <b style="color: black;">R$${salario}</b>, com adicional de <b style="color: black;">R$${adicional}</b> e bônus de <b style="color: black;">R$${bonus}</b>, você tem: <br><br> Bruto: <b style="color: black;">R$${bruto}</b><br> IR: <b style="color: black;">R$${IR}</b><br> INSS: <b style="color: black;">R$${INSS}</b><br> FGTS: <b style="color: black;">R$${FGTS}</b><br> Líquido: <b style="color: black;">R$${salarioliq}</b><br><br> Com a renda de <b style="color: black;">R$${salarioliq}</b>, é recomendado poupar <b style="color: black;">R$${poupar}</b>, para que em um ano tenha poupado <b style="color: black;">R$${porano}</b>`;
+
+        }
+        else {
+            div_msg.innerHTML = `<b >Análise da sua Renda</b> <br><br> Com o salário de <b style="color: black;">R$${salario}</b>, com adicional de <b style="color: black;">R$${adicional}</b> e bônus de <b style="color: black;">R$${bonus}</b>, você tem: <br><br> Bruto: <b style="color: black;">R$${bruto}</b><br> IR: <b style="color: black;">R$${IR}</b><br> INSS: <b style="color: black;">R$${INSS}</b><br> FGTS: <b style="color: black;">R$${FGTS}</b><br> Líquido: <b style="color: black;">R$${salarioliq}</b><br><br> Com a renda de <b style="color: black;">R$${salarioliq}</b>, é recomendado obter renda extra para realizar a poupanca. `
+        }
+}
+
+
+
+
+
+
+
+
+</script>

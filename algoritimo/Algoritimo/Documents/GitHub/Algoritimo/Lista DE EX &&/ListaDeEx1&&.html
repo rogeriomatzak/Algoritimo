@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Analisar Renda</h1><br>
+    Renda do Usúario<input type="number" id="input_rendasolo" /><br>
+    Renda Familiar<input type="number" id="input_rendafamiliar" /><br>
+    <button onclick="verificar()">Verificar Renda</button>
+  </body>
+</html>
+<script>
+  function verificar() {
+    var rendasolo = Number(input_rendasolo.value);
+    var rendafamiliar = Number(input_rendafamiliar.value);
+    if (rendasolo <= 1050 && rendafamiliar <= 2100) {
+      alert("Você tem direto");
+    } else alert("Você não tem direto");
+  }
+</script>

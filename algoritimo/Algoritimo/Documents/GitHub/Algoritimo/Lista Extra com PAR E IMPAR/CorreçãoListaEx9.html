@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    Número de Vezes: <input type="number" id="input_num" />] Frase:
+    <input type="text" id="input_frase" />
+    <button onclick="papagaiar()">Papagaiar</button>
+  </body>
+</html>
+<script>
+  function papagaiar() {
+    var num = Number(input_num.value);
+    var frase = input_frase.value;
+    var mensagem = "";
+    for (var cont = 1; cont < num; cont++) {
+      mensagem += frase + "\n";
+    }
+    for (var cont = 0; cont < num; cont++) {
+      alert(mensagem);
+    }
+
+  }
+</script>

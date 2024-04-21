@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    Qual o intervalo de tempo que deseja treinar?
+    <input type="text" id="input_treino" /><br />
+    <button onclick="calcular()">Exibir rotina mensal</button><br /><br />
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+  function calcular() {
+    var treino = Number(input_treino.value);
+
+    var proximoDiaTreino = 1; // representa qual dia vai treinar
+    div_mensagem.innerHTML = "";
+
+    for (var diaAtual = 1; diaAtual <= 30; diaAtual++) {
+      if (diaAtual == proximoDiaTreino) {
+        proximoDiaTreino += treino; // incrementa o próximo dia de treino
+        div_mensagem.innerHTML += `Dia ${diaAtual} - Musculação <br>`;
+      } else {
+        div_mensagem.innerHTML += `Dia ${diaAtual} - Comer, dormir etc <br>`;
+      }
+    }
+  }
+</script>

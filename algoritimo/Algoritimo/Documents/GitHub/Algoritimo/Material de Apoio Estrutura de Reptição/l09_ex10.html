@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    Inicio: <input type="text" id="input_inicio" /> <br />
+    Fim: <input type="text" id="input_fim" /> <br />
+    <button onclick="exibir()">S2 pares</button>
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+  function exibir() {
+    var inicio = Number(input_inicio.value);
+    var fim = Number(input_fim.value);
+
+    var texto = "";
+
+    if (fim > inicio) {
+      for (var cont = inicio; cont <= fim; cont++) {
+        var resto_divisao = cont % 2; 
+
+        if (resto_divisao == 0) {
+          texto += `${cont} <br>`;
+        }
+      }
+
+      div_mensagem.innerHTML = texto;
+    } else {
+      alert("Intervalo deve ser crescente");
+    }
+  }
+</script>

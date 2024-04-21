@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Atividade Avaliativa 2: One Piece</h1>
+    Epsódio que deseja começar assitindo: <input type="number" id="input_comeco"><br>
+    Quantidade de tempo disponível: <input type="number" id="input_disponivel"><br>
+    Unidade de medida de tempo: <select id="select_unidade">
+        <option>Horas</option>
+        <option>Minutos</option>
+    </select><br>
+    Pular a abertura dos episódios: <select id="select_abertura">
+        <option>Sim</option>
+        <option>Não</option>
+    </select><br>
+    Pular encerramento dos episódios: <select id="select_encerramento">
+        <option>Sim</option>
+        <option>Não</option>
+    </select><br>
+    <button onclick="assistir()">Assistir Episódios</button>
+    <div id="div_mensagem"></div>
+    <b></b>
+    <script>
+        function assistir() {
+            var comeco = Number(input_comeco.value);
+            var disponivel = Number(input_disponivel.value);
+            var unidade = select_unidade.value;
+            var abertura = select_abertura.value;
+            var encerramento = select_encerramento.value;
+            div_mensagem.innerHTML = "";
+            var divisao = 0
+            var convertido = 0
+            if (unidade == 'Horas') {
+                convertido = disponivel * 60
+            } else if (unidade == 'Minutos') {
+                convertido = disponivel;
+            }
+            if (comeco < 1 || comeco > 1100) {
+                alert("O número do episódio é inválido")
+
+            } else if (abertura == `Sim` && encerramento == `Sim`) {
+                var divisao = convertido / 20
+                for (var ep = comeco; convertido > 0; ep++) {
+                    div_mensagem.innerHTML += `<br><b>Episódio: ${ep} </b><br>`;
+                    for (var cont = 1; cont <= 20 && convertido > 0; cont++) {
+                        {
+                            div_mensagem.innerHTML += `Minuto ${cont}: Assistindo Episódio <br>`;
+                        }
+                        convertido--;
+
+                    }
+
+                }
+            } else if (abertura == `Sim` && encerramento == "Não") {
+                var divisao = convertido / 22
+                for (var ep = comeco; convertido > 0; ep++) {
+                    div_mensagem.innerHTML += `<br><b>Episódio : ${ep} </b><br>`;
+                    for (var cont = 1; cont <= 22 && convertido > 0; cont++) {
+                        if (cont <= 20) {
+                            div_mensagem.innerHTML += `Minuto  ${cont} : Assistindo Episódio <br>`;
+                        } else {
+                            div_mensagem.innerHTML += ` Minuto  ${cont}  : Assistindo Encerramento <br>`;
+                        }
+                        convertido--
+
+                    }
+
+                }
+            } else if (abertura == `Não` && encerramento == `Sim`) {
+                var divisao = convertido / 22
+                for (var ep = comeco; convertido > 0; ep++) {
+                    div_mensagem.innerHTML += `<br><b>Epsodio : ${ep} </b><br>`;
+                    for (var cont = 1; cont <= 22 && convertido > 0; cont++) {
+                        if (cont <= 2) {
+                            div_mensagem.innerHTML += `Minuto ${cont}: Assitindo Abertura <br> `
+                        } else {
+                            div_mensagem.innerHTML += `Minuto ${cont}: Assitindo Episódio <br>`
+                        }
+                        convertido--
+                    }
+                }
+            } else if (abertura == `Não` && encerramento == `Não`) {
+                var divisao = convertido / 24
+                for (var ep = comeco; convertido > 0; ep++) {
+                    div_mensagem.innerHTML += `<br><b>Epsodio : ${ep} </b><br>`;
+                    for (var cont = 1; cont <= 24 && convertido > 0; cont++) {
+                        if (cont <= 2) {
+                            div_mensagem.innerHTML += `Minuto ${cont}: Assitindo Abertura <br>`
+                        } else if (cont <= 22) {
+                            div_mensagem.innerHTML += `Minuto ${cont}: Assitindo Episódio <br>`
+                        } else {
+                            div_mensagem.innerHTML += `Minuto ${cont}: Assitindo Encerramento <br>`
+                        }
+                        convertido--;
+
+                    }
+
+                }
+            }
+            div_mensagem.innerHTML += `<b>Fim dos Episódios!</b><br>Foi assitido ${divisao} Episódios`
+        }
+    </script>
+</body>
+
+</html>

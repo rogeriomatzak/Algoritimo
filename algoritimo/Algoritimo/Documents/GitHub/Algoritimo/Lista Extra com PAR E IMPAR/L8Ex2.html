@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Altura: <input type="text" id="input_altura">
+    Cor de cabelo:<select name="" id="select_cor">
+        <option value="1">Preto</option>
+        <option value="2">Ruivo</option>
+        <option value="3">Loiro</option>
+        <option value="4">Castanho</option>
+    </select>
+    <button onclick="deu()">Deu Match</button>
+    <div id="div_msg"></div>
+    <img src="" alt="">
+</body>
+
+</html>
+<script>
+    function deu() {
+        var altura = Number(input_altura.value);
+        var cor = select_cor.value;
+        if (altura < 1.85) {
+        if (cor == 1 || cor == 3) {
+    
+            div_msg.innerHTML = `<img src ='https://www.google.com/url?sa=i&url=https%3A%2F%2Fdepositphotos.com%2Fbr%2Fphoto%2Fhappy-smiling-indian-man-74911333.html&psig=AOvVaw0uuY4NFEDbtoBkJBvp4m1E&ust=1711636992777000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCPCqmOvWlIUDFQAAAAAdAAAAABAI'>`
+        } else {
+            div_msg.innerHTML = `<img src='https://www.google.com/imgres?imgurl=https%3A%2F%2Fthumbs.dreamstime.com%2Fz%2Fcara-triste-do-homem-que-expressa-emo%25C3%25A7%25C3%25A3o-negativa-isolada-90813316.jpg&tbnid=R8Q8kCBfbTg3MM&vet=12ahUKEwj1t7iZ15SFAxWfUbgEHYMMCAEQMygfegUIARCRAQ..i&imgrefurl=https%3A%2F%2Fpt.dreamstime.com%2Ffoto-de-stock-cara-triste-do-homem-que-expressa-emo%25C3%25A7%25C3%25A3o-negativa-isolada-image90813316&docid=pRHHa43i4LUOLM&w=1600&h=1687&q=imagem%20cara%20triste%20pessoa%20real&ved=2ahUKEwj1t7iZ15SFAxWfUbgEHYMMCAEQMygfegUIARCRAQ'>`
+        }
+    }
+    }
+
+
+
+</script>
