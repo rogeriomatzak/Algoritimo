@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="input_morou" >
+    <input type="number" id="input_ordem" >
+    <button onclick="Cadastrar()">Cadastrar Bairro</button>
+    <button onclick="Relembrar()">Relembrar Moradia</button>
+    <div id="mensagem"></div>
+</body>
+</html>
+<script>
+    var lista = [];
+
+    function Cadastrar() {
+        var morou = input_morou.value;
+        lista.push(morou);
+    }
+
+    function Relembrar() {
+        var numero = Number(input_ordem.value);
+        if (numero <= lista.length && numero > 0) {
+            mensagem.innerHTML = "Você morou no bairro: " + lista[numero - 1];
+        } else {
+            mensagem.innerHTML = `Você ainda não morou no ${numero}º bairro!`;
+        }
+    }
+</script>
