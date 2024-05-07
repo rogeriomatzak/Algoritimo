@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  Preço da unidade de Macaron: <input type="text" id="input_unidadeM"><br>
+  Quantidade de Macarons: <input type="text" id="input_macaron"><br><br>
+  Preço unidade de Brigadeiro: <input type="text" id="input_unidadeB"><br>
+  Quantidade de Brigadaeiros: <input type="text" id="input_brigadeiro"><br><br>
+  Preço da unidade de Cupcakes: <input type="text" id="input_unidadeCup"><br>
+  Quantidade de Cupcakes: <input type="text" id="input_cupcake"><br><br>
+  Preço da unidade de CheeseCake: <input type="text" id="input_unidadeCC"><br>
+  Quantidade de CheeseCakes : <input type="text" id="input_cheesecake"><br><br>
+  <button onclick="verificar()">Verificar Vendas</button>
+  <div id="div_mensagem"></div>
+
+
+</body>
+
+</html>
+<script>
+
+function verificar() {
+  var unidadeM = Number(input_unidadeM.value);
+  var macaron = Number(input_macaron.value);
+  var unidadeB = Number(input_unidadeB.value);
+  var brigadeiro = Number(input_brigadeiro.value);
+  var unidadeCup = Number(input_unidadeCup.value);
+  var cupcake = Number(input_cupcake.value);
+  var unidadeCC = Number(input_unidadeCC.value);
+  var cheesecake = Number(input_cheesecake.value);
+
+  var imgMacaron = `<img style="width: 150px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROvQOkeamjLywO7KOq82m7n9WEwtbFkKdmgA&usqp=CAU" alt="">`;
+  var imgBrigadeiro = `<img style="width: 150px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-VfRcSGkl2nQvlFruJ9Suouuq97Vp6QfY3A&s" alt="">`;
+  var imgCupCake = `<img style="width: 150px;" src="https://atlas-content-cdn.pixelsquid.com/stock-images/cupcake-y1Jk6q8-600.jpg" alt="">`;
+  var imgCheesecakes = `<img style="width: 150px;" src="https://media.istockphoto.com/id/1205169550/pt/foto/cheesecake-slice-with-strawberries.jpg?s=612x612&w=0&k=20&c=ewqOO5l3NnDA3rVMXO7nwYJCcEtOjMkFuuk_vMyx_2c=" alt="">`;
+
+  var total = (unidadeM * macaron) + (unidadeB * brigadeiro) + (unidadeCup * cupcake) + (unidadeCC * cheesecake);
+
+  if (total > 0) {
+    div_mensagem.innerHTML = "";
+    for (var contM = 1; contM <= macaron; contM++) {
+      div_mensagem.innerHTML += `${contM} - ${imgMacaron} - ${unidadeM}<br>`;
+    }
+    for (var contB = 1; contB <= brigadeiro; contB++) {
+      div_mensagem.innerHTML += `${contB} - ${imgBrigadeiro} - ${unidadeB}<br>`;
+    }
+    for (var contCup = 1; contCup <= cupcake; contCup++) {
+      div_mensagem.innerHTML += `${contCup} - ${imgCupCake} - ${unidadeCup}<br>`;
+    }
+    for (var contCC = 1; contCC <= cheesecake; contCC++) {
+      div_mensagem.innerHTML += `${contCC} - ${imgCheesecakes} - ${unidadeCC}<br>`;
+    }
+  }
+  div_mensagem.innerHTML+=`<br><b> Com a quantidade de ${macaron} Macarons, ${brigadeiro} Brigadeiros, ${cupcake} Cupcakes e ${cheesecake} Cheesecakes, a venda totalizará R$${total}<b>`
+}
+</script>
