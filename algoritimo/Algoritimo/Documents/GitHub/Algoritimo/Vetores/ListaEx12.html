@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  Nome dos filhos: <input type="text" id="input_filhos">
+  <button onclick="cadastrar()">Cadastrar</button>
+  <button onclick="atualizar()">Atualizar</button>
+  <div id="mensagem"></div>
+</body>
+</html>
+<script>
+var lista=[]
+function cadastrar() {
+  var filhos = input_filhos.value;
+  if(lista.indexOf(filhos) >= 0){
+    alert("Não pode mais de 1 filho com o mesmo nome!")
+  } else {
+    lista.push(filhos)
+  }
+}
+function atualizar(){
+  for(var index=0;index < lista.length;index++){
+    mensagem.innerHTML=""
+     var particular=(index+1)*3000
+     var publica=(index+1)*1500
+    mensagem.innerHTML=`Você tem ${index+1} filho(s)<br>
+    Seu custo mensal será aproximadamente R$${particular} se colocá-los em escola particular ou R$${publica} se eles estudarem em escola pública`
+
+
+  }
+
+}
+</script>

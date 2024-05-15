@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <label for="input_alunos">Alunos:</label>
+  <input type="text" id="input_alunos">
+  <button onclick="exibir()">Exibir</button>
+  <div id="div_mensagem"></div>
+
+  <script>
+    var lista = [];
+
+    function exibir() {
+      var aluno = input_alunos.value;
+      lista.push(aluno);
+      var tamanho_lista = lista.length;
+      var mensagem = '';
+      for (var index = tamanho_lista - 1; index >= 0; index--) {
+        mensagem += lista[index] + "<br>";
+      }
+      div_mensagem.innerHTML = mensagem;
+    }
+  </script>
+</body>
+
+</html>
