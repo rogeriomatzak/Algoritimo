@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Nome do produto: <input type="text" id="input_nome"> <br>
+    Preço do Produto: <input type="text" id="input_preco"> <br>
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="relatorio()">Relatório</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    var lista_produtos = [];
+    var lista_precos = [];
+    var lista_vendas = [];
+
+    function cadastrar() {
+        var nome = input_nome.value;
+        var preco = Number(input_preco.value);
+
+        lista_produtos.push(nome);
+        lista_precos.push(preco);
+        lista_vendas.push(preco * 1.25);
+    }
+
+    function relatorio() {
+        var maior = lista_precos[0];
+        var menor = lista_precos[0];
+
+        var maior_produto = lista_produtos[0];
+        var menor_produto = lista_produtos[0];
+
+        var soma_produtos_compra = 0;
+        var soma_produtos_venda = 0;
+        
+        div_mensagem.innerHTML = `Total de produtos: ${lista_nomes.length} <br><br>`;
+
+        for (var index = 0; index < lista_precos.length; index++) {
+            var produto_atual = lista_produtos[index];
+            var preco_compra = lista_precos[index];
+            var preco_venda = lista_vendas[index];
+            // var preco_venda = preco_compra + preco_compra * 0.25;
+
+            if (preco_compra > maior) {
+                maior = preco_compra;
+                maior_produto = produto_atual;
+            }
+            
+            if (preco_compra < menor) {
+                menor = preco_compra;
+                menor_produto = produto_atual;
+            }
+
+            soma_produtos_compra += preco_compra;
+            soma_produtos_venda += preco_venda;
+
+            div_mensagem.innerHTML += `
+                Produto ${index + 1}: ${produto_atual}   <br>
+                Preço de compra: R$${preco_compra}. Vender por R$${preco_venda}  <br><br>
+            `;
+        }
+
+        var media_venda = soma_produtos_venda / lista_produtos.length;
+        // var media_venda = (soma_produtos_compra * 1.25) / lista_produtos.length;
+
+        div_mensagem.innerHTML += `
+            Produto mais caro: ${maior_produto}   <br>
+            Produto mais barato: ${menor_produto}   <br>
+            Soma dos preços de compra: ${soma_produtos_compra}   <br>
+            Média dos preços de venda: ${media_venda}   <br>
+        `;
+
+    }
+</script>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 11 - Exercicio 9</title>
+</head>
+
+<body>
+    Projeto: <input type="text" id="input_projeto">
+    <button onclick="registrar()">Registrar Projeto</button><br>
+    <button onclick="mostrarprojetos()">Mostrar Projetos</button>
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+
+<script>
+    lista_projetos = [];
+    function registrar() {
+        var projeto = input_projeto.value;
+        lista_projetos.push(projeto);
+
+        div_mensagem.innerHTML = "";
+        for (var index = 0; index < lista_projetos.length; index++) {
+            var total = lista_projetos.length;
+            var experiencia = "";
+
+            if (total >= 0 && total <= 4) {
+                experiencia = "júnior";
+            } else if (total >= 5 && total <= 12) {
+                experiencia = "pleno";
+            } else {
+                experiencia = "senior";
+            }
+
+            div_mensagem.innerHTML = `Você já fez ${total} projetos. Por isso você é um profissional ${experiencia}.<br><br>`;
+        }
+    }
+
+    function mostrarprojetos(){
+            for(var lista = lista_projetos.length - 1; lista >= 0; lista--) {
+                div_mensagem.innerHTML += `${lista_projetos[lista]}<br>`;
+            }
+        }
+
+</script>
