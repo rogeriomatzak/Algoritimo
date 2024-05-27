@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Quantidade de Números: <input type="text" id="input_num"> <br>
+    <button onclick="gerar()">Gerar Aleatórios</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function gerar() {
+        div_mensagem.innerHTML = "";
+
+        var qtd = Number(input_num.value);
+
+        var cont_abaixo = 0;
+
+        for (var cont = 0; cont < qtd; cont++) {
+            var aleatorio = Math.random();
+
+            if (aleatorio >= 0.5) {
+                div_mensagem.innerHTML += `${aleatorio} - metade superior<br>`;
+            } else {
+                cont_abaixo++;
+                div_mensagem.innerHTML += `${aleatorio} - metade inferior<br>`;
+            }
+        }
+
+        div_mensagem.innerHTML += `TOTAL DE NÚMEROS SORTEADOS ABAIXO DA METADE = ${cont_abaixo} <br>`;
+    }
+</script>

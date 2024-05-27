@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  Nome do produto: <input type="text" id="input_produto"><br>
+  Preço de Compra : <input type="text" id="input_preco"><br>
+  <button onclick="cadastrar()">Cadastrar</button>
+  <button onclick="gerar()">Relatório de estoque</button>
+  <div id="mensagem"></div>
+</body>
+
+</html>
+<script>
+  var listaproduto = [];
+  var listapreco = [];
+
+  function cadastrar() {
+    var produto = input_produto.value;
+    var preco = Number(input_preco.value);
+    listaproduto.push(produto);
+    listapreco.push(preco);
+  }
+
+  function gerar() {
+    var totalProdutos = listaproduto.length;
+     mensagem.innerHTML=''
+    mensagem.innerHTML = `Total de produtos: ${totalProdutos}<br>`;
+
+    var somapreco = 0;
+    var precomax = listapreco[0];
+    var precomin = listapreco[0];
+    var produtomax = listaproduto[0];
+    var produtomin = listaproduto[0];
+
+    for (var index = 0; index < totalProdutos; index++) {
+      var preco = listapreco[index];
+      var lucro = preco * 1.25;
+      mensagem.innerHTML += `Produto ${index + 1}: ${listaproduto[index]}<br>
+        Preço de compra: R$ ${preco.toFixed(2)}. Vender por R$${lucro.toFixed(2)}<br>`;
+      somapreco += preco;
+
+      if (preco > precomax) {
+        produtomax = listaproduto[index];
+      }
+      if (preco < precomin) {
+        produtomin = listaproduto[index];
+      }
+    }
+    var mediavenda = somapreco * 1.25 / totalProdutos;
+    mensagem.innerHTML += `<br>`;
+    mensagem.innerHTML += `Produto mais caro: ${produtomax}<br>`;
+    mensagem.innerHTML += `Produto mais barato: ${produtomin}<br>`;
+    mensagem.innerHTML += `Soma dos preços de compra: R$ ${somapreco.toFixed(2)}<br>`;
+    mensagem.innerHTML += `Média de preço de venda: R$ ${mediavenda.toFixed(2)}<br>`;
+  }
+</script>

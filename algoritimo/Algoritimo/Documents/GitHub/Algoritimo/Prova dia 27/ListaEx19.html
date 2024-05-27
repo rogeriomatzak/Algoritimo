@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Nome do Filme : <input type="text" id="input_nome"><br>
+    Min : <input type="number" id="input_min">
+    Max : <input type="number" id="input_max">
+    <button onclick="cadastrar()">Cadastrar</button><br>
+    <button onclick="listar()">Listar Filmes</button><br>
+    <button onclick="filtrar()">Filtrar Filmes</button><br>
+    <div id="mensagem"></div>
+</body>
+
+</html>
+<script>
+    var lista = []
+    var vezes = 0
+    function cadastrar() {
+        var nome = input_nome.value;
+        if (nome) {
+            lista.push(nome);
+            vezes++;
+            mensagem.innerHTML = `Você já assitiu ${vezes}<br>`
+        }
+    }
+
+    function listar() {
+        var nome = input_nome.value;
+        var tamanho_lista = lista.length;
+        mensagem.innerHTML = ``
+        for (var index = tamanho_lista - 1; index >= 0; index--) {
+            mensagem.innerHTML += `${lista[index]}<br>`
+        }
+    }
+    function filtrar() {
+    var nome = input_nome.value;
+    var min = Number(input_min.value);
+    var max = Number(input_max.value);
+    var mensagem = document.getElementById("mensagem"); // Adicione esta linha para definir a variável mensagem
+    mensagem.innerHTML = ``;
+    for (var index  = max ; index >= min; index--) {
+        mensagem.innerHTML += `${lista[index -1]}<br>`;
+    }
+}
+
+</script>

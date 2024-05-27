@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Nome Produto : <input type="text" id="input_nome"><br>
+    Preço Produto : <input type="number" id="input_preco"><br>
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="atualizar()">Atualizar Estoque</button><br>
+    <input type="number" id="input_valor"><br>
+    <select id="select_op">
+        <option>Acima de</option>
+        <option>Abaixo de</option>
+    </select>
+    <button onclick="filtrar()">Filtrar Produtos</button><br>
+    <div id="mensagem"></div>
+
+    <script>
+        var lista_nome = [];
+        var lista_preco = [];
+        var totalValor = 0;
+
+        function cadastrar() {
+            var nome = input_nome.value;
+            var preco = Number(input_preco.value);
+
+            if (preco < 0 || nome.length < 3) {
+                mensagem.innerHTML = `Não foi possível cadastrar`;
+            } else {
+                lista_nome.push(nome);
+                lista_preco.push(preco);
+                mensagem.innerHTML = `Cadastro Realizado com Sucesso`;
+            }
+        }
+
+        function atualizar() {
+            var tamanho_lista = lista_nome.length;
+            totalValor = 0;
+            mensagem.innerHTML = "";
+            mensagem.innerHTML += `Você tem ${tamanho_lista} produtos cadastrados em estoque:<br>`;
+            for (var index = 0; index < tamanho_lista; index++) {
+                mensagem.innerHTML += `${index + 1}. ${lista_nome[index]} - R$${lista_preco[index].toFixed(2)}<br>`;
+                totalValor += lista_preco[index];
+            }
+            mensagem.innerHTML += `Valor total do estoque: R$${totalValor.toFixed(2)}`;
+        }
+
+        function filtrar() {
+            var valor = input_valor.value;
+            var opcao = select_op.value; 
+            mensagem.innerHTML = `Produtos filtrados:<br>`;
+            
+            if (opcao === "Acima de") {
+                for (var index = 0; index < lista_nome.length; index++) {
+                    if (lista_preco[index] >= valor) {
+                        mensagem.innerHTML += `${index + 1}. ${lista_nome[index]} - R$${lista_preco[index].toFixed(2)}<br>`;
+                    }
+                }
+            } else if (opcao === "Abaixo de") {
+                for (var index = 0; index < lista_nome.length; index++) {
+                    if (lista_preco[index] <= valor) {
+                        mensagem.innerHTML += `${index + 1}. ${lista_nome[index]} - R$${lista_preco[index].toFixed(2)}<br>`;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

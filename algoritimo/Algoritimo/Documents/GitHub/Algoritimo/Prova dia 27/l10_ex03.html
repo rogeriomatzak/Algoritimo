@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Quantidade de Números: <input type="text" id="input_num"> <br>
+    <button onclick="gerar()">Gerar Aleatórios</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    /*  
+        Dentro do FOR, estamos gerando um novo número aleatório em cada repetição.
+
+        Uma das alternativas para encontrar o maior / menor número de um conjunto:
+          - crie uma variável auxiliar, para guardar o MAIOR número que estiver gerando
+            -- inicialize essa variável com o valor mais BAIXO que possa existir, pois será reatribuida
+          - crie uma variável auxiliar, para guardar o MENOR número que estiver gerando
+            -- inicialize essa variável com o valor mais ALTO que possa existir, pois será reatribuida
+
+        A cada repetição, atualizamos as variáveis auxiliares "maior_numero" e "menor_numero" quando:
+          - se o número aleatório for MAIOR do que o valor da variável "maior_numero", reatribui o valor da variável "maior_numero" com o número gerado
+          - se o número aleatório for MENOR do que o valor da variável "menor_numero", reatribui o valor da variável "menor_numero" com o número gerado
+
+        Dessa forma, o primeiro número que passar, será atribuido para essas duas variáveis.
+
+        Depois, a cada repetição, reatribuirá o valor das variáveis "maior_numero" e "menor_numero" somente caso a condição seja verdadeira.
+        Para a condição ser verdadeira:
+          - o aleatório gerado deve ser MAIOR que o valor da variável "maior_numero"
+          - o aleatório gerado deve ser MENOR que o valor da variável "maior_numero"
+    */
+    function gerar() {
+        div_mensagem.innerHTML = "";
+
+        var qtd = Number(input_num.value);
+
+        var cont_abaixo = 0;
+        var cont_acima = 0;
+
+        var maior_numero = 0; // inicializada com o MENOR número possível
+        var menor_numero = 1; // inicializada com o MAIOR número possível
+
+        var total = 0;
+
+        for (var cont = 0; cont < qtd; cont++) {
+            var aleatorio = Math.random(); // a cada repetição, gera um novo número aleatório
+
+            total += aleatorio; // acumula o número gerado na variável "total"
+
+            if (aleatorio >= 0.5) {
+                cont_acima++;
+                div_mensagem.innerHTML += `${aleatorio} - metade superior<br>`;
+            } else {
+                cont_abaixo++;
+                div_mensagem.innerHTML += `${aleatorio} - metade inferior<br>`;
+            }
+
+
+            // se o aleatório gerado for MAIOR que o "maior_numero"
+            if (aleatorio > maior_numero) { // na primeira execução, valida se "X > 0", o que obrigatoriamente é verdade
+                maior_numero = aleatorio; // reatribui o "maior_numero" com o aleatório gerado
+            }
+
+            // se o aleatório gerado for MENOR que o "menor_numero"
+            if (aleatorio < menor_numero) { // na primeira execução, valida se "X < 1", o que obrigatoriamente é verdade
+                menor_numero = aleatorio; // reatribui o "menor_numero" com o aleatório gerado
+            }
+        }
+
+        var media = total / qtd; // ao final das repetições, divide o total pela quantidade para obter a média dos números
+
+        div_mensagem.innerHTML += `TOTAL DE NÚMEROS SORTEADOS ACIMA DA METADE = ${cont_acima} <br>`;
+        div_mensagem.innerHTML += `TOTAL DE NÚMEROS SORTEADOS ABAIXO DA METADE = ${cont_abaixo} <br>`;
+        div_mensagem.innerHTML += `MAIOR NÚMERO SORTEADO = ${maior_numero} <br>`;
+        div_mensagem.innerHTML += `MENOR NÚMERO SORTEADO = ${menor_numero} <br>`;
+        div_mensagem.innerHTML += `MEDIA DE NÚMEROS SORTEADOS = ${media} <br>`;
+    }
+</script>
