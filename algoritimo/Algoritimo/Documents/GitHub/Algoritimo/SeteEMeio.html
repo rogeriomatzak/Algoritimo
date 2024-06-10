@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sete e Meio</title>
+</head>
+
+<body>
+  <h1>Sete e Meio</h1>
+  <p>Clique em "Jogar Sete e Meio" para começar!</p>
+  <button id="jogar-btn">Jogar Sete e Meio</button>
+  <button id="pedir-btn" style="display: none;">Pedir Outra Carta</button>
+  <button id="passar-btn" style="display: none;">Passar Vez</button>
+  <h2>Jogador:</h2>
+  <p id="jogador"></p>
+  <h2>Banca:</h2>
+  <p id="banca"></p>
+  <div id="mensagem"></div>
+</body>
+
+</html>
+
+<script>
+  const naipes = ['Espadas', 'Copas', 'Ouros', 'Paus'];
+  const cartas = ["Ás", "2", "3", "4", "5", "6", "7", "Valete", "Rainha", "Rei"];
+
+  function inicializarBaralho() {
+    let baralho = [];
+    for (let naipe of naipes) {
+      for (let carta of cartas) {
+        baralho.push({ valor: carta, naipe: naipe });
+      }
+    }
+    return baralho;
+  }
+
+  let baralho = inicializarBaralho();
+
+  function sortearCarta() {
+    const indice = Math.floor(Math.random() * baralho.length);
+    return baralho.splice(indice, 1)[0];
+  }
+
+  function calcularPontos(carta) {
+    if (carta.valor === "Valete" || carta.valor === "Rainha" || carta.valor === "Rei") {
+      return 0.5;
+    } else if (carta.valor === "Ás") {
+      return 1;
+    } else {
+      return parseFloat(carta.valor);
+    }
+  }
+
+  function calcularPontuacao(mao) {
+    let pontos = 0;
+    for (let carta of mao) {
+      pontos += calcularPontos(carta);
+    }
+    return pontos;
+  }
+
+  function determinarVencedor(pontosJogador, pontosBanca) {
+    if (pontosJogador === 7.5) {
+      return "SETE E MEIO! O jogador venceu com 7.5 pontos!";
+    } else if (pontosJogador > 7.5) {
+      return `O JOGADOR ESTOUROU! A banca venceu com ${pontosBanca} pontos.`;
+    } else if (pontosBanca === 7.5) {
+      return "SETE E MEIO! A banca venceu com 7.5 pontos!";
+    } else if (pontosBanca === 7.5) {
+      return `A banca venceu com 7.5 pontos.`;
+    } else if (pontosBanca > 7.5) {
+      return `A BANCA ESTOUROU! O jogador venceu com ${pontosJogador} pontos.`;
+    }
+  }
+
+  const jogadorMao = [];
+  const bancaMao = [];
+
+  function exibirMensagem(mensagem) {
+    const mensagemElemento = document.getElementById("mensagem");
+    mensagemElemento.innerHTML = mensagem;
+  }
+
+  function atualizarPontuacao(mao, elemento) {
+    const pontos = calcularPontuacao(mao);
+    elemento.innerHTML += `${pontos} pontos - ${mao[mao.length - 1].valor} de ${mao[mao.length - 1].naipe} <br>`;
+  }
+
+  document.getElementById("jogar-btn").onclick = function () {
+    const jogadorCarta = sortearCarta();
+    jogadorMao.push(jogadorCarta);
+    atualizarPontuacao(jogadorMao, document.getElementById("jogador"));
+    exibirMensagem("Escolha sua ação:");
+    if (calcularPontuacao(jogadorMao) === 7.5) {
+      exibirMensagem("Parabéns, você ganhou com 7.5 pontos!");
+      return;
+    }
+    document.getElementById("jogar-btn").style.display = "none";
+    document.getElementById("pedir-btn").style.display = "inline";
+    document.getElementById("passar-btn").style.display = "inline";
+  };
+
+
+  document.getElementById("pedir-btn").onclick = function () {
+    const jogadorCarta = sortearCarta();
+    jogadorMao.push(jogadorCarta);
+    atualizarPontuacao(jogadorMao, document.getElementById("jogador"));
+    if (calcularPontuacao(jogadorMao) > 7.5) {
+      exibirMensagem("Você estourou! A banca venceu com 0 Pontos.");
+      document.getElementById("jogar-btn").style.display = "none";
+      document.getElementById("pedir-btn").style.display = "none";
+      document.getElementById("passar-btn").style.display = "none";
+    }
+  };
+
+
+  function bancaJogar() {
+    if (calcularPontuacao(bancaMao) < 7.5) {
+      const bancaCarta = sortearCarta();
+      bancaMao.push(bancaCarta);
+      atualizarPontuacao(bancaMao, document.getElementById("banca"));
+      bancaJogar();
+    } else {
+      const pontosJogador = calcularPontuacao(jogadorMao);
+      const pontosBanca = calcularPontuacao(bancaMao);
+      exibirMensagem(determinarVencedor(pontosJogador, pontosBanca));
+      document.getElementById("jogar-btn").style.display = "none";
+      document.getElementById("pedir-btn").style.display = "none";
+      document.getElementById("passar-btn").style.display = "none";
+    }
+  }
+
+  document.getElementById("passar-btn").onclick = bancaJogar;
+
+
+</script>
